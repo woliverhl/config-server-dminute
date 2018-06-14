@@ -1,0 +1,26 @@
+# HTTP Server
+server:
+  port: ${HYSTRIX_DASHBOARD_PORT:9000}   # HTTP port
+
+management:
+  security:
+    enabled: false
+
+turbine:
+  appConfig: sadr,deneb
+  clusterNameExpression: new String("default")
+  combineHostPort: true
+
+# Discovery Server Access
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_ENDPOINT}
+
+logging:
+  file: logs/${spring.application.name}.log
+  level:
+    com.netflix.discovery: 'OFF'
+    org.springframework.cloud: 'INFO'
+    org.springframework.web: 'INFO'
+    com.atsistemas: 'DEBUG'
