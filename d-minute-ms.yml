@@ -51,6 +51,7 @@ spring:
     url: jdbc:mysql://127.0.0.1/dminute?useSSL=false
     username: root
     password: 123456     
+    max-active=10    
 #Security properties      
 security: 
   oauth2:
@@ -65,6 +66,7 @@ spring:
     url: jdbc:mysql://us-cdbr-iron-east-05.cleardb.net/heroku_ddeb90f13531d40?useSSL=false
     username: bb0c481c17d801
     password: 548aed1858602ac
+    max-active=10
 eureka:
   instance:
     hostname: ${DOMAIN_NAME}
