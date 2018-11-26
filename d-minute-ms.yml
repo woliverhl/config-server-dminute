@@ -71,3 +71,14 @@ eureka:
   instance:
     hostname: ${DOMAIN_NAME}
     nonSecurePort: 80
+---
+spring:
+  profiles: docker
+  datasource:
+    url: jdbc:mysql://172.17.0.2/heroku_ddeb90f13531d40?allowPublicKeyRetrieval=true&useSSL=false
+    username: bb0c481c17d801
+    password: 548aed1858602ac
+eureka:
+  instance:
+    hostname: ${DOMAIN_NAME}
+    nonSecurePort: 80
