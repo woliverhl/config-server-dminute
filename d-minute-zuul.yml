@@ -1,5 +1,5 @@
 server:
-  port: ${ZUUL_PORT:8080}
+  port: ${ZUUL_PORT:8081}
 
 logging:
   file: logs/${spring.application.name}.log
@@ -7,13 +7,19 @@ logging:
     com.netflix.discovery: 'OFF'
     org.springframework.cloud: 'DEBUG'
     com.atsistemas: 'DEBUG'
-
+ 
+# Discovery Server Access
 eureka:
-   client:
-     serviceUrl:
-      defaultZone: ${EUREKA_ENDPOINT} 
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_ENDPOINT}
+  instance:
+    hostname: ${DOMAIN_NAME}
+    
 # ZUul Routes      
 zuul:
+  sensitiveHeaders: Cookie,Set-Cookie
+  ignored-headers: Access-Control-Allow-Credentials, Access-Control-Allow-Origin
   prefix: /api
   routes:
     dminute:
@@ -28,3 +34,7 @@ zuul:
       path: /demo/**
       service-id: MY-SERVICE
       strip-prefix: true
+    front:
+      path: /ui
+      url: https://front-dminute.herokuapp.com
+      strip-prefix: false
