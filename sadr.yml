@@ -1,13 +1,6 @@
-# HTTP Server
 server:
-  port: ${PORT:3333}   # HTTP port
-
-# Discovery Server Access
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: ${EUREKA_ENDPOINT}
-
+  port: ${PORT:3335}   # HTTP port
+  
 logging:
   file: logs/${spring.application.name}.log
   level:
@@ -15,3 +8,11 @@ logging:
     org.springframework.cloud: 'INFO'
     org.springframework.web: 'INFO'
     com.atsistemas: 'DEBUG'
+
+# Discovery Server Access
+eureka:
+  instance:
+    hostname: 127.0.0.1
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_ENDPOINT}

@@ -74,15 +74,60 @@ eureka:
 ---
 spring:
   profiles: docker
-  datasource:
-    url: jdbc:mysql://172.17.0.2/heroku_ddeb90f13531d40?allowPublicKeyRetrieval=true&useSSL=false
-    username: bb0c481c17d801
-    password: 548aed1858602ac
+server:
+  port: ${PORT:3333}   # HTTP port
+logging:
+  file: logs/${spring.application.name}.log
+  level:
+    com.netflix.discovery: 'OFF'
+    org.springframework.cloud: 'INFO'
+    org.springframework.web: 'INFO'
+    com.atsistemas: 'DEBUG'
 # Discovery Server Access
 eureka:
   client:
     serviceUrl:
-      defaultZone: ${EUREKA_ENDPOINT}  
-  instance:
-    hostname: ${DOMAIN_NAME}
-    nonSecurePort: 80
+      defaultZone: ${EUREKA_ENDPOINT}
+#Spring properties 
+spring: 
+  application:
+    name: dminutems 
+  aop:
+    auto: true
+    proxy-target-class: false
+  messages:
+    always-use-message-format: false
+    basename: messages
+    cache-seconds: -1
+  mvc:
+    async:
+      request-timeout: 300
+    date-format: DD/MM/YYYY
+    favicon:
+      enabled: true
+    dispatch-options-request: true
+    dispatch-trace-request: false
+  couchbase:
+    bucket:
+      name: default
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect 
+  datasource:
+    url: jdbc:mysql://172.17.0.2/heroku_ddeb90f13531d40?allowPublicKeyRetrieval=true&useSSL=false
+    username: bb0c481c17d801
+    password: 548aed1858602ac    
+    max-active=10    
+#Security properties      
+security: 
+  oauth2:
+    resource:
+      service-id: resource
+      prefer-token-info: true 
