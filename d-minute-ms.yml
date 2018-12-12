@@ -121,10 +121,9 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect 
   datasource:
-    url: jdbc:mysql://172.17.0.2/heroku_ddeb90f13531d40?allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://172.17.0.2/heroku_ddeb90f13531d40?useSSL=false
     username: bb0c481c17d801
-    password: 548aed1858602ac    
-    max-active=10    
+    password: 548aed1858602ac
 #Security properties      
 security: 
   oauth2:
