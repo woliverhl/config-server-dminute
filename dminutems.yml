@@ -9,6 +9,10 @@ logging:
     org.springframework.cloud: 'INFO'
     org.springframework.web: 'INFO'
     com.atsistemas: 'DEBUG'
+#Spring properties 
+spring: 
+  application:
+    name: dminutems     
 ---    
 spring:
   profiles: docker
