@@ -70,6 +70,16 @@ eureka:
 ---
 spring:
   profiles: docker
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
   datasource:
     url: jdbc:mysql://172.17.0.2/heroku_ddeb90f13531d40?useSSL=false
     username: bb0c481c17d801
