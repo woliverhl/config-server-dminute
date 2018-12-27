@@ -17,7 +17,8 @@ eureka:
       defaultZone: ${EUREKA_ENDPOINT}
 
 #Spring properties 
-spring: 
+spring:
+  profiles: docker
   application:
     name: dminutems 
   aop:
