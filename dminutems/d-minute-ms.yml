@@ -1,0 +1,133 @@
+# HTTP Server
+server:
+  port: ${PORT:3333}   # HTTP port
+  
+logging:
+  file: logs/${spring.application.name}.log
+  level:
+    com.netflix.discovery: 'OFF'
+    org.springframework.cloud: 'INFO'
+    org.springframework.web: 'INFO'
+    com.atsistemas: 'DEBUG'
+
+# Discovery Server Access
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_ENDPOINT}
+#Spring properties 
+spring: 
+  application:
+    name: dminutems 
+  aop:
+    auto: true
+    proxy-target-class: false
+  messages:
+    always-use-message-format: false
+    basename: messages
+    cache-seconds: -1
+  mvc:
+    async:
+      request-timeout: 300
+    date-format: DD/MM/YYYY
+    favicon:
+      enabled: true
+    dispatch-options-request: true
+    dispatch-trace-request: false
+  couchbase:
+    bucket:
+      name: default
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect 
+  datasource:
+    url: jdbc:mysql://127.0.0.1/dminute?useSSL=false
+    username: root
+    password: 123456     
+    max-active=10    
+#Security properties      
+security: 
+  oauth2:
+    resource:
+      service-id: resource
+      prefer-token-info: true   
+
+---
+spring:
+  profiles: heroku
+  datasource:
+    url: jdbc:mysql://us-cdbr-iron-east-01.cleardb.net/heroku_97b21c584329283?useSSL=false
+    username: b80833ebd8b9c9
+    password: 8aff5076
+    max-active=10
+eureka:
+  instance:
+    hostname: ${DOMAIN_NAME}
+    nonSecurePort: 80
+---
+spring:
+  profiles: docker
+server:
+  port: ${PORT:3333}   # HTTP port
+logging:
+  file: logs/${spring.application.name}.log
+  level:
+    com.netflix.discovery: 'OFF'
+    org.springframework.cloud: 'INFO'
+    org.springframework.web: 'INFO'
+    com.atsistemas: 'DEBUG'
+# Discovery Server Access
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_ENDPOINT}
+#Spring properties 
+spring: 
+  application:
+    name: dminutems 
+  aop:
+    auto: true
+    proxy-target-class: true
+  messages:
+    always-use-message-format: false
+    basename: messages
+    cache-seconds: -1
+  mvc:
+    async:
+      request-timeout: 300
+    date-format: DD/MM/YYYY
+    favicon:
+      enabled: true
+    dispatch-options-request: true
+    dispatch-trace-request: false
+  couchbase:
+    bucket:
+      name: default
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect 
+  datasource:
+    url: jdbc:mysql://172.17.0.2/heroku_ddeb90f13531d40?useSSL=false
+    username: bb0c481c17d801
+    password: 548aed1858602ac
+#Security properties      
+security: 
+  oauth2:
+    resource:
+      service-id: resource
+      prefer-token-info: true 
+      userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo
