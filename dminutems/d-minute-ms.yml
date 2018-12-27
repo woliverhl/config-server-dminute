@@ -21,7 +21,7 @@ spring:
     name: dminutems 
   aop:
     auto: true
-    proxy-target-class: false
+    proxy-target-class: true
   messages:
     always-use-message-format: false
     basename: messages
@@ -58,6 +58,7 @@ security:
     resource:
       service-id: resource
       prefer-token-info: true   
+      userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo
 
 ---
 spring:
