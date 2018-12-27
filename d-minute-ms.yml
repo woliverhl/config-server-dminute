@@ -21,7 +21,7 @@ spring:
     name: dminutems 
   aop:
     auto: true
-    proxy-target-class: false
+    proxy-target-class: true
   messages:
     always-use-message-format: false
     basename: messages
